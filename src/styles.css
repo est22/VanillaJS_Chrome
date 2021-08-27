@@ -1,3 +1,17 @@
+/* style.css */
 body {
+  background-color: rgba(255, 208, 0, 0.904);
+}
+
+h1 {
+  color: white;
   font-family: sans-serif;
+}
+
+.middle {
+  background-color: purple;
+}
+
+.small {
+  background-color: cornflowerblue;
 }
