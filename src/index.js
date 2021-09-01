@@ -1,17 +1,22 @@
-import "./styles.css";
+// index.js
+const clockTitle = document.querySelector(".js-clock");
 
-const colors = ["#2E88D5", "#904FAD", "#EEBC10"];
-const hello = document.querySelector("body");
+const clock = setInterval(function () {
+  const xmas = new Date("December 25 2021 00:00:00 GMT+0900").getTime();
+  const now = new Date().getTime();
+  const distance = xmas - now;
 
-function colorHandle() {
-  if (window.innerWidth < 400) {
-    hello.style.backgroundColor = colors[0];
-  } else if (window.innerWidth >= 400 && window.innerWidth < 600) {
-    hello.style.backgroundColor = colors[1];
-  } else {
-    hello.style.backgroundColor = colors[2];
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  clockTitle.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+  if (distance < 0) {
+    clearInterval(clock);
+    clockTitle.innerText = `IT'S D-DAY!!`;
   }
-}
-
-colorHandle();
-window.addEventListener("resize", colorHandle);
+}, 1000);
